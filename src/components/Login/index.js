@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import book from "images/books.png";
@@ -18,8 +18,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = () => {
+const Login = ({ onSubmit }) => {
   const classes = useStyles();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { email, password, rememberMe } = e.target.elements;
+
+    onSubmit({
+      email: email.value,
+      password: password.value,
+      rememberMe: rememberMe.checked,
+    });
+  };
   return (
     <div className="login">
       <Container component="main" maxWidth="xs">
@@ -29,7 +39,7 @@ const Login = () => {
             Bookshelf
           </Typography>
         </div>
-        <form>
+        <form onSubmit={handleSubmit} noValidate>
           <TextField
             variant="outlined"
             label="Email Address"
@@ -55,6 +65,7 @@ const Login = () => {
           <FormControlLabel
             control={<Checkbox color="primary" value="remember" />}
             label="Remember me"
+            name="rememberMe"
           />
 
           <Button
@@ -63,29 +74,35 @@ const Login = () => {
             color="primary"
             fullWidth
             className={classes.submit}
-            onClick={() => console.log("Sign In")}
           >
             Sign In
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Typography
+                component={Link}
+                to="/forgotPassword"
+                variant="body2"
+                color="primary"
+              >
                 Forgot Password?
-              </Link>
+              </Typography>
             </Grid>
             <Grid item>
-              <Link href="/signup" variant="body2">
+              <Typography
+                component={Link}
+                to="/signup"
+                variant="body2"
+                color="primary"
+              >
                 Don't have an account? Sign Up
-              </Link>
+              </Typography>
             </Grid>
           </Grid>
         </form>
         <Box mt={8}>
           <Typography variant="body2" color="textSecondary" align="center">
-            {"Copyright © "}
-            <Link href="#" color="inherit">
-              Bookshelf
-            </Link>{" "}
+            {"Copyright © Bookshelf "}
             {new Date().getFullYear()}
           </Typography>
         </Box>

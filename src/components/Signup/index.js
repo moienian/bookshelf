@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import book from "images/books.png";
@@ -22,8 +22,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Signup = () => {
+const Signup = ({ onSubmit }) => {
   const classes = useStyles();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const {
+      email,
+      password,
+      firstName,
+      lastName,
+      newsletter,
+    } = e.target.elements;
+
+    onSubmit({
+      email: email.value,
+      password: password.value,
+      firstName: firstName.value,
+      lastName: lastName.value,
+      newsletter: newsletter.checked,
+    });
+  };
   return (
     <div className="signup">
       <Container component="main" maxWidth="xs">
@@ -33,7 +51,7 @@ const Signup = () => {
             Bookshelf
           </Typography>
         </div>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -44,7 +62,7 @@ const Signup = () => {
                 autoFocus
                 required
                 fullWidth
-                autoComplete="fname"
+                autoComplete="given-name"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -53,7 +71,7 @@ const Signup = () => {
                 label="Last Name"
                 id="lastName"
                 name="lastName"
-                autoComplete="lname"
+                autoComplete="family-name"
                 required
                 fullWidth
               />
@@ -84,7 +102,11 @@ const Signup = () => {
             <Grid item xs={12}>
               <FormControlLabel
                 control={
-                  <Checkbox color="primary" value="allowNewsletterEmails" />
+                  <Checkbox
+                    color="primary"
+                    value="newsletter"
+                    name="newsletter"
+                  />
                 }
                 label="I want to receive newsletter from bookshelf"
               />
@@ -97,24 +119,25 @@ const Signup = () => {
             color="primary"
             fullWidth
             className={classes.submit}
-            onClick={() => console.log("Sign Up")}
           >
             Sign Up
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
+              <Typography
+                component={Link}
+                to="/login"
+                variant="body2"
+                color="primary"
+              >
                 Already have an account? Sign In
-              </Link>
+              </Typography>
             </Grid>
           </Grid>
         </form>
         <Box mt={8}>
           <Typography variant="body2" color="textSecondary" align="center">
-            {"Copyright © "}
-            <Link href="#" color="inherit">
-              Bookshelf
-            </Link>{" "}
+            {"Copyright © Bookshelf "}
             {new Date().getFullYear()}
           </Typography>
         </Box>
