@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import ForgotPassword from "./components/ForgotPassword";
 
 function App() {
   const login = (formData) => {
@@ -9,6 +10,10 @@ function App() {
   };
 
   const register = (formData) => {
+    console.log("register", formData);
+  };
+
+  const passwordReset = (formData) => {
     console.log("register", formData);
   };
 
@@ -21,6 +26,9 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <Signup onSubmit={register} />
+          </Route>
+          <Route exact path="/forgot">
+            <ForgotPassword onSubmit={passwordReset} />
           </Route>
           <Route exact path="/">
             <Login onSubmit={login} />
