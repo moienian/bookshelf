@@ -1,0 +1,16 @@
+.signup {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup__logo {
+  text-align: center;
+}
+
+.signup__logo img {
+  width: 100px;
+  height: 100px;
+}
