@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Book from "../Book";
 import "./Discover.css";
 
 const Discover = () => {
@@ -28,14 +29,14 @@ const Discover = () => {
     setQueried(true);
   };
   return (
-    <div>
-      <form onSubmit={handleSearchSubmit}>
+    <div className="container">
+      <form onSubmit={handleSearchSubmit} className="form__search">
         <input type="search" id="search" />
       </form>
-      <div>
-        {data?.map((book) => {
-          return <div key={book.id}>{book.volumeInfo.title}</div>;
-        })}
+      <div className="bookList">
+        {data?.map((book) => (
+          <Book key={book.id} book={book} />
+        ))}
       </div>
     </div>
   );

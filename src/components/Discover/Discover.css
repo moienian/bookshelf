@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 40px;
+  background-color: lightgray;
+}
+
+.form__search {
+  margin-bottom: 20px;
+  text-align: center;
+  /* max-width: 100%; */
+}
+.form__search input {
+  border: none;
+  width: 600px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.3rem;
+}
+
+.form__search input:hover,
+.form__search input:focus {
+  outline: none;
+}
+
+.bookList {
+  max-width: 980px;
+}
