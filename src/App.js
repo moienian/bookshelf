@@ -3,6 +3,7 @@ import "./App.css";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ForgotPassword from "./components/ForgotPassword";
+import Discover from "components/Discover";
 
 function App() {
   const login = (formData) => {
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route exact path="/forgot">
             <ForgotPassword onSubmit={passwordReset} />
+          </Route>
+          <Route exact path="/discover">
+            <Discover />
           </Route>
           <Route exact path="/">
             <Login onSubmit={login} />
