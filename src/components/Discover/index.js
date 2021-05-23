@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Book from "../Book";
+import { client } from "../../utils/api-client";
 import "./Discover.css";
 
 const Discover = () => {
@@ -11,16 +12,9 @@ const Discover = () => {
     if (!queried) {
       return;
     }
-    window
-      .fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
-          query
-        )}`
-      )
-      .then((response) => response.json())
-      .then((responseData) => {
-        setData(responseData.items);
-      });
+    client(`volumes?q=${encodeURIComponent(query)}`).then((responseData) => {
+      setData(responseData.items);
+    });
   }, [queried, query]);
 
   const handleSearchSubmit = (e) => {

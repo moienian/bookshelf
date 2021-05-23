@@ -6,7 +6,7 @@ const Book = ({ book }) => {
     <div className="card">
       <div className="card__image">
         <img
-          src={book.volumeInfo.imageLinks.thumbnail}
+          src={book.volumeInfo.imageLinks?.thumbnail}
           alt={book.volumeInfo.title}
         />
       </div>
