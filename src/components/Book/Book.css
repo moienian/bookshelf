@@ -1,7 +1,7 @@
 .card {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 20px 20px 1fr;
+  grid-template-rows: auto auto 1fr;
   background-color: white;
   margin-bottom: 40px;
   border-radius: 10px;
@@ -12,7 +12,8 @@
 }
 
 .card__image {
-  grid-row: span 4;
+  grid-row: span 3;
+  margin: auto auto;
 }
 
 .card__title {
@@ -20,17 +21,11 @@
   font-weight: bold;
 }
 
-.card_subtitle {
-  font-style: italic;
+.card__authors {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
 }
 
 .card_description {
-  margin-top: 50px;
+  margin-top: 20px;
 }
-/* .card img {
-  margin: 20px;
-  width: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */

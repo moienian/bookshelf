@@ -11,8 +11,8 @@
 .form__search {
   margin-bottom: 20px;
   text-align: center;
-  /* max-width: 100%; */
 }
+
 .form__search input {
   border: none;
   width: 600px;
